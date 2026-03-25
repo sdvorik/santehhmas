@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вячеслав — Сантехник в Геленджике | Прочистка, откачка септиков</title>
+    <meta name="description" content="Вячеслав — личное выполнение сантехнических работ в Геленджике. 18 лет опыта, обученные мастера. Откачка септиков, прочистка труб, телеинспекция. Фиксированные цены.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #111111;
+            line-height: 1.4;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Типографика */
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .section-sub {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 3rem;
+            max-width: 700px;
+        }
+
+        /* Кнопки */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #000000;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2c2c2c;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #000000;
+            color: #000000;
+        }
+
+        .btn-outline:hover {
+            background: #000000;
+            color: white;
+        }
+
+        .btn-accent {
+            background: #c27e2e;
+            color: white;
+        }
+
+        .btn-accent:hover {
+            background: #a5661f;
+        }
+
+        /* Шапка */
+        .navbar {
+            padding: 24px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links a {
+            margin-left: 32px;
+            text-decoration: none;
+            color: #111;
+            font-weight: 500;
+        }
+
+        /* Hero секция */
+        .hero {
+            padding: 80px 0 100px;
+        }
+
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-badge {
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: #c27e2e;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #444;
+            margin-bottom: 32px;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            flex: 1;
+            display: flex;
+            gap: 40px;
+            justify-content: flex-end;
+        }
+
+        .stat-item {
+            text-align: right;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        /* Блок с цифрами (как в Nisoz) */
+        .stats-showcase {
+            background: #f8f8f8;
+            padding: 80px 0;
+        }
+
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stats-grid .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stats-grid .stat-number {
+            font-size: 3.5rem;
+            color: #c27e2e;
+        }
+
+        /* Карточки преимуществ */
+        .features {
+            padding: 100px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            padding: 32px;
+            background: #fff;
+            border: 1px solid #efefef;
+            transition: all 0.2s;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        /* Таблица цен */
+        .pricing {
+            background: #f8f8f8;
+            padding: 100px 0;
+        }
+
+        .price-table {
+            background: white;
+            border: 1px solid #eee;
+            margin-top: 40px;
+        }
+
+        .price-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 32px;
+            border-bottom: 1px solid #efefef;
+        }
+
+        .price-row:last-child {
+            border-bottom: none;
+        }
+
+        .price-service {
+            font-weight: 600;
+            font-size: 1.2rem;
+            flex: 2;
+        }
+
+        .price-desc {
+            flex: 3;
+            color: #666;
+        }
+
+        .price-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #c27e2e;
+            flex: 1;
+            text-align: right;
+        }
+
+        /* Галерея */
+        .gallery {
+            padding: 100px 0;
+        }
+
+        .gallery-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+        }
+
+        .gallery-item {
+            width: 280px;
+            height: 220px;
+            background: #eaeaea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            background-size: cover;
+        }
+
+        /* Форма */
+        .callback {
+            background: #111;
+            color: white;
+            padding: 100px 0;
+        }
+
+        .callback-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .form-box {
+            flex: 1;
+        }
+
+        .form-box input {
+            width: 100%;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+            border: none;
+            background: #2a2a2a;
+            color: white;
+            border-radius: 40px;
+        }
+
+        .info-box {
+            flex: 1;
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 24px;
+        }
+
+        .footer {
+            padding: 40px 0;
+            text-align: center;
+            color: #888;
+            font-size: 0.85rem;
+            border-top: 1px solid #efefef;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                padding: 0 24px;
+            }
+            .hero-grid {
+                flex-direction: column;
+            }
+            .hero-stats {
+                justify-content: flex-start;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .price-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            .price-value {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="container">
+        <div class="logo">Вячеслав</div>
+        <div class="nav-links">
+            <a href="#features">Опыт</a>
+            <a href="#pricing">Цены</a>
+            <a href="#contact">Контакты</a>
+        </div>
+    </div>
+</div>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">ЛИЧНОЕ ВЫПОЛНЕНИЕ</div>
+                <h1>Сантехник в Геленджике<br>с 18-летним опытом</h1>
+                <p>Откачка септиков, прочистка труб, телеинспекция. Без посредников — работаю сам. Фиксированная цена по договору.</p>
+                <div class="hero-buttons">
+                    <a href="tel:+79881234567" class="btn btn-primary">📞 Срочный вызов</a>
+                    <a href="#pricing" class="btn btn-outline">💰 Смотреть цены</a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">18+</div>
+                    <div class="stat-label">лет опыта</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">обученных мастеров</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">выезд</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stats-showcase">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">2006</div>
+                <div class="stat-label">начало карьеры</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1 200+</div>
+                <div class="stat-label">довольных клиентов</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4–12 м³</div>
+                <div class="stat-label">объем техники</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features" id="features">
+    <div class="container">
+        <h2 class="section-title">Почему выбирают меня</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3>Опыт с 2006 года</h3>
+                <p>Лично в теме 18 лет. Обучил десятки мастеров по городу. Там, где конкуренты учились — я преподавал.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3>Экспертиза септиков</h3>
+                <p>Знаю устройство любых септиков. После откачки дам совет, как избежать проблем в будущем.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📄</div>
+                <h3>Честность и договор</h3>
+                <p>Фиксированная цена. Никаких скрытых доплат «за сложность». Цена = цена.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚛</div>
+                <h3>Своя техника</h3>
+                <p>Машины разного объема — от 4 до 12 м³. Решу задачу любой сложности.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pricing" id="pricing">
+    <div class="container">
+        <h2 class="section-title">💰 Прозрачные цены</h2>
+        <div class="price-table">
+            <div class="price-row">
+                <div class="price-service">Откачка септика 4 м³</div>
+                <div class="price-desc">Стандартный объем для дачи / частного дома</div>
+                <div class="price-value">1 800 ₽</div>
+            </div>
+            <div class="price-row">
+                <div class="price-service">Откачка септика 6–8 м³</div>
+                <div class="price-desc">Для коттеджей с постоянным проживанием</div>
+                <div class="price-value">2 500 ₽</div>
+            </div>
+            <div class="price-row">
+                <div class="price-service">Откачка септика 10–12 м³</div>
+                <div class="price-desc">Большие объемы, вывоз ила</div>
+                <div class="price-value">3 500 ₽</div>
+            </div>
+            <div class="price-row">
+                <div class="price-service">Гидродинамическая прочистка</div>
+                <div class="price-desc">Удаление жировых пробок, засоров давлением до 200 бар</div>
+                <div class="price-value">от 3 500 ₽</div>
+            </div>
+            <div class="price-row">
+                <div class="price-service">Телеинспекция труб</div>
+                <div class="price-desc">Диагностика камерой, точное определение дефекта</div>
+                <div class="price-value">от 4 000 ₽</div>
+            </div>
+            <div class="price-row">
+                <div class="price-service">Аварийный выезд</div>
+                <div class="price-desc">24/7, приезд за 30–60 минут</div>
+                <div class="price-value">от 4 500 ₽</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="gallery">
+    <div class="container">
+        <h2 class="section-title">📸 Реальные фото с объектов</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" style="background-image: url('https://placehold.co/400x300/e0e0e0/111?text=Техника+на+выезде');">🚛</div>
+            <div class="gallery-item" style="background-image: url('https://placehold.co/400x300/e0e0e0/111?text=Процесс+прочистки');">💦</div>
+            <div class="gallery-item" style="background-image: url('https://placehold.co/400x300/e0e0e0/111?text=Телеинспекция');">📹</div>
+            <div class="gallery-item" style="background-image: url('https://placehold.co/400x300/e0e0e0/111?text=Откачка+септика');">✅</div>
+        </div>
+    </div>
+</section>
+
+<section class="callback" id="contact">
+    <div class="container">
+        <div class="callback-grid">
+            <div class="form-box">
+                <h2 style="font-size: 2rem; margin-bottom: 20px;">Нужна помощь?</h2>
+                <p style="margin-bottom: 30px;">Оставьте номер — я перезвоню сам через 5 минут и бесплатно проконсультирую.</p>
+                <form action="#" method="post">
+                    <input type="text" placeholder="Ваше имя" required>
+                    <input type="tel" placeholder="+7 (___) ___-__-__" required>
+                    <button type="submit" class="btn btn-accent" style="background:#c27e2e; width:100%;">Перезвоните мне</button>
+                </form>
+            </div>
+            <div class="info-box">
+                <h3>Вячеслав</h3>
+                <p style="font-size: 1.6rem; margin: 20px 0;"><a href="tel:+79881234567" style="color: #c27e2e; text-decoration: none;">+7 (988) 123-45-67</a></p>
+                <p>💬 WhatsApp / Telegram: тот же номер</p>
+                <p>📍 Геленджик, Кабардинка, Дивноморское, Архипо-Осиповка</p>
+                <p>🕐 Круглосуточно, без выходных</p>
+                <hr style="margin: 20px 0; border-color: #333;">
+                <p>✅ Лицензия • Договор • Чек</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <p>© 2026 Вячеслав — сантехнические работы в Геленджике</p>
+    </div>
+</footer>
+
+<script>
+    document.querySelector('form')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Спасибо! Вячеслав перезвонит вам в ближайшее время.');
+        this.reset();
+    });
+</script>
+</body>
+</html>
