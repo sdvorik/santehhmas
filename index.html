@@ -13,21 +13,49 @@
         }
 
         body {
-            background: #1a1a1a;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
-            color: #e0e0e0;
+            color: #ffffff;
             line-height: 1.4;
+            background: #111111;
         }
+
+        /* ВИДЕОФОН (если не нужно — удали этот блок и в body убери overflow) */
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0.35; /* затемнение, чтобы текст читался */
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        /* Если видеофон не нужен, просто закомментируй .video-bg и .overlay,
+           и body сделай background: #111111; */
 
         .container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 40px;
+            position: relative;
+            z-index: 2;
         }
 
         /* Типографика */
         h1, h2, h3 {
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: -0.02em;
         }
 
@@ -40,7 +68,7 @@
 
         .section-sub {
             font-size: 1.2rem;
-            color: #aaaaaa;
+            color: #cccccc;
             margin-bottom: 3rem;
             max-width: 700px;
         }
@@ -50,7 +78,7 @@
             display: inline-block;
             padding: 14px 32px;
             border-radius: 40px;
-            font-weight: 600;
+            font-weight: 700;
             text-decoration: none;
             transition: all 0.2s ease;
             font-size: 1rem;
@@ -59,36 +87,37 @@
         }
 
         .btn-primary {
-            background: #c0ff2e;
-            color: #1a1a1a;
-            box-shadow: 0 0 12px rgba(192, 255, 46, 0.4);
+            background: #ff5500;
+            color: #ffffff;
+            box-shadow: 0 0 12px rgba(255, 85, 0, 0.5);
         }
 
         .btn-primary:hover {
-            background: #a0dd1a;
+            background: #ff7700;
             transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(192, 255, 46, 0.6);
+            box-shadow: 0 0 20px rgba(255, 85, 0, 0.8);
         }
 
         .btn-outline {
             background: transparent;
-            border: 1.5px solid #c0ff2e;
-            color: #c0ff2e;
+            border: 1.5px solid #ff5500;
+            color: #ff5500;
         }
 
         .btn-outline:hover {
-            background: #c0ff2e;
-            color: #1a1a1a;
+            background: #ff5500;
+            color: #111111;
         }
 
         .btn-accent {
-            background: #c0ff2e;
-            color: #1a1a1a;
+            background: #ff5500;
+            color: #ffffff;
             font-weight: 700;
+            box-shadow: 0 0 10px rgba(255, 85, 0, 0.4);
         }
 
         .btn-accent:hover {
-            background: #a0dd1a;
+            background: #ff7700;
             transform: translateY(-2px);
         }
 
@@ -97,25 +126,25 @@
             position: fixed;
             bottom: 24px;
             right: 24px;
-            background: #c0ff2e;
+            background: #ff5500;
             width: 64px;
             height: 64px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 20px rgba(192, 255, 46, 0.5);
+            box-shadow: 0 0 20px rgba(255, 85, 0, 0.6);
             z-index: 1000;
             transition: all 0.2s;
         }
 
         .sticky-phone:hover {
             transform: scale(1.08);
-            box-shadow: 0 0 30px rgba(192, 255, 46, 0.8);
+            box-shadow: 0 0 30px rgba(255, 85, 0, 0.9);
         }
 
         .sticky-phone a {
-            color: #1a1a1a;
+            color: #ffffff;
             font-size: 32px;
             text-decoration: none;
             font-weight: bold;
@@ -124,8 +153,8 @@
         /* Шапка */
         .navbar {
             padding: 24px 0;
-            border-bottom: 1px solid #333;
-            background: rgba(26, 26, 26, 0.95);
+            border-bottom: 1px solid #ff5500;
+            background: rgba(17, 17, 17, 0.85);
             backdrop-filter: blur(8px);
             position: sticky;
             top: 0;
@@ -141,28 +170,27 @@
 
         .logo {
             font-size: 1.8rem;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: -0.02em;
-            color: #c0ff2e;
+            color: #ff5500;
+            text-shadow: 0 0 5px rgba(255,85,0,0.3);
         }
 
         .nav-links a {
             margin-left: 32px;
             text-decoration: none;
-            color: #e0e0e0;
-            font-weight: 500;
+            color: #ffffff;
+            font-weight: 600;
             transition: color 0.2s;
         }
 
         .nav-links a:hover {
-            color: #c0ff2e;
+            color: #ff5500;
         }
 
         /* Hero секция */
         .hero {
             padding: 80px 0 100px;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-            border-bottom: 1px solid #333;
         }
 
         .hero-grid {
@@ -180,9 +208,9 @@
         .hero-badge {
             text-transform: uppercase;
             font-size: 0.8rem;
-            letter-spacing: 2px;
-            color: #c0ff2e;
-            font-weight: 600;
+            letter-spacing: 3px;
+            color: #ff5500;
+            font-weight: 700;
             margin-bottom: 20px;
         }
 
@@ -195,7 +223,7 @@
 
         .hero-content p {
             font-size: 1.2rem;
-            color: #cccccc;
+            color: #dddddd;
             margin-bottom: 32px;
             max-width: 500px;
         }
@@ -219,21 +247,25 @@
 
         .stat-number {
             font-size: 3rem;
-            font-weight: 700;
+            font-weight: 800;
             line-height: 1;
-            color: #c0ff2e;
+            color: #ff5500;
+            text-shadow: 0 0 8px rgba(255,85,0,0.4);
         }
 
         .stat-label {
             font-size: 0.9rem;
-            color: #aaaaaa;
+            color: #bbbbbb;
             margin-top: 8px;
         }
 
         /* Блок "О себе" */
         .about {
             padding: 80px 0;
-            background: #1e1e1e;
+            background: rgba(26, 26, 26, 0.85);
+            backdrop-filter: blur(4px);
+            border-top: 1px solid #ff5500;
+            border-bottom: 1px solid #ff5500;
         }
 
         .about-grid {
@@ -256,15 +288,15 @@
         .about-text p {
             font-size: 1.1rem;
             line-height: 1.5;
-            color: #cccccc;
+            color: #dddddd;
             margin-bottom: 20px;
         }
 
         .about-quote {
             font-size: 1.2rem;
-            font-weight: 500;
-            color: #c0ff2e;
-            border-left: 3px solid #c0ff2e;
+            font-weight: 600;
+            color: #ff5500;
+            border-left: 3px solid #ff5500;
             padding-left: 24px;
             margin-top: 24px;
         }
@@ -279,21 +311,22 @@
             height: 280px;
             border-radius: 50%;
             margin: 0 auto;
-            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
-            border: 2px solid #c0ff2e;
+            background: #222;
+            border: 3px solid #ff5500;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 5rem;
-            color: #c0ff2e;
+            color: #ff5500;
+            box-shadow: 0 0 25px rgba(255,85,0,0.3);
         }
 
         /* Блок с цифрами */
         .stats-showcase {
-            background: #222222;
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(4px);
             padding: 80px 0;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #ff5500;
         }
 
         .stats-grid {
@@ -311,13 +344,14 @@
 
         .stats-grid .stat-number {
             font-size: 3.5rem;
-            color: #c0ff2e;
+            color: #ff5500;
         }
 
         /* Преимущества */
         .features {
             padding: 100px 0;
-            background: #1e1e1e;
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(4px);
         }
 
         .features-grid {
@@ -329,16 +363,16 @@
 
         .feature-card {
             padding: 32px;
-            background: #2a2a2a;
-            border: 1px solid #3a3a3a;
+            background: #1e1e1e;
+            border: 1px solid #333;
             transition: all 0.2s;
-            border-radius: 16px;
+            border-radius: 20px;
         }
 
         .feature-card:hover {
-            border-color: #c0ff2e;
+            border-color: #ff5500;
             transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(192, 255, 46, 0.1);
+            box-shadow: 0 10px 30px rgba(255, 85, 0, 0.15);
         }
 
         .feature-icon {
@@ -358,15 +392,16 @@
 
         /* Цены */
         .pricing {
-            background: #222222;
+            background: rgba(17, 17, 17, 0.85);
+            backdrop-filter: blur(4px);
             padding: 100px 0;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
+            border-top: 1px solid #ff5500;
+            border-bottom: 1px solid #ff5500;
         }
 
         .price-table {
-            background: #2a2a2a;
-            border: 1px solid #3a3a3a;
+            background: #1e1e1e;
+            border: 1px solid #333;
             margin-top: 40px;
             border-radius: 20px;
             overflow: hidden;
@@ -378,7 +413,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 24px 32px;
-            border-bottom: 1px solid #3a3a3a;
+            border-bottom: 1px solid #2a2a2a;
         }
 
         .price-row:last-child {
@@ -386,7 +421,7 @@
         }
 
         .price-service {
-            font-weight: 600;
+            font-weight: 700;
             font-size: 1.2rem;
             flex: 2;
             color: #ffffff;
@@ -399,8 +434,8 @@
 
         .price-value {
             font-size: 1.4rem;
-            font-weight: 700;
-            color: #c0ff2e;
+            font-weight: 800;
+            color: #ff5500;
             flex: 1;
             text-align: right;
         }
@@ -408,7 +443,8 @@
         /* Галерея */
         .gallery {
             padding: 100px 0;
-            background: #1e1e1e;
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(4px);
         }
 
         .gallery-grid {
@@ -424,21 +460,22 @@
             background-size: cover;
             background-position: center;
             border-radius: 16px;
-            border: 1px solid #3a3a3a;
-            transition: transform 0.2s, border-color 0.2s;
+            border: 1px solid #333;
+            transition: all 0.2s;
         }
 
         .gallery-item:hover {
             transform: scale(1.02);
-            border-color: #c0ff2e;
+            border-color: #ff5500;
+            box-shadow: 0 0 20px rgba(255,85,0,0.3);
         }
 
         /* Форма */
         .callback {
-            background: #1a1a1a;
-            color: white;
+            background: rgba(17, 17, 17, 0.9);
+            backdrop-filter: blur(8px);
             padding: 100px 0;
-            border-top: 1px solid #333;
+            border-top: 1px solid #ff5500;
         }
 
         .callback-grid {
@@ -456,27 +493,28 @@
             width: 100%;
             padding: 16px 20px;
             margin-bottom: 16px;
-            border: 1px solid #3a3a3a;
-            background: #2a2a2a;
+            border: 1px solid #333;
+            background: #1e1e1e;
             color: white;
             border-radius: 40px;
         }
 
         .form-box input:focus {
             outline: none;
-            border-color: #c0ff2e;
+            border-color: #ff5500;
+            box-shadow: 0 0 8px rgba(255,85,0,0.5);
         }
 
         .info-box {
             flex: 1;
-            background: #2a2a2a;
+            background: #1a1a1a;
             padding: 40px;
             border-radius: 24px;
-            border: 1px solid #3a3a3a;
+            border: 1px solid #333;
         }
 
         .info-box a {
-            color: #c0ff2e;
+            color: #ff5500;
             text-decoration: none;
         }
 
@@ -485,8 +523,8 @@
             text-align: center;
             color: #888;
             font-size: 0.85rem;
-            background: #1a1a1a;
-            border-top: 1px solid #333;
+            background: #0a0a0a;
+            border-top: 1px solid #222;
         }
 
         @media (max-width: 900px) {
@@ -525,9 +563,18 @@
 </head>
 <body>
 
+<!-- ВИДЕОФОН (рекомендую) 
+     Скачай видео и назови bg-video.mp4, положи в images/
+     Если не нужен — удали этот блок и .overlay -->
+<video class="video-bg" autoplay muted loop playsinline>
+    <source src="images/bg-video.mp4" type="video/mp4">
+    <!-- Если видео нет — просто закомментируй этот блок -->
+</video>
+<div class="overlay"></div>
+
 <!-- Фиксированная кнопка телефона -->
 <div class="sticky-phone">
-    <a href="tel:+79298399188">📞</a>
+    <a href="tel:+79881234567">📞</a>
 </div>
 
 <div class="navbar">
@@ -547,9 +594,9 @@
             <div class="hero-content">
                 <div class="hero-badge">ЛИЧНОЕ ВЫПОЛНЕНИЕ</div>
                 <h1>Сантехник в Геленджике<br>с 18-летним опытом</h1>
-                <p>Откачка септиков, прочистка труб, телеинспекция. Без посредников — работаю со своей бригадой. Фиксированная цена по договору.</p>
+                <p>Откачка септиков, прочистка труб, телеинспекция. Без посредников — работаю сам. Фиксированная цена по договору.</p>
                 <div class="hero-buttons">
-                    <a href="tel:+79298399188" class="btn btn-primary">📞 Срочный вызов</a>
+                    <a href="tel:+79881234567" class="btn btn-primary">📞 Срочный вызов</a>
                     <a href="#pricing" class="btn btn-outline">💰 Смотреть цены</a>
                 </div>
             </div>
@@ -582,8 +629,8 @@
             <div class="about-text">
                 <h2>В этой сфере с 2006 года</h2>
                 <p><strong>Меня зовут Вячеслав.</strong> Я начал заниматься сантехникой и септиками, когда многие нынешние «специалисты» ещё учились в школе. За эти годы обучил десятки мастеров по всему городу.</p>
-                <p>И знаете, что самое главное? <strong>Когда мои конкуренты только учились, я уже был на шаг впереди.</strong></p>
-                <p>Я не нанимаю учеников, не передаю заказы «левым» бригадам. Каждый вызов — только моя проверенная команда. Лично проконтролирую качество, дам советы по эксплуатации, чтобы проблема не возвращалась.</p>
+                <p>И знаете, что самое забавное? <strong>Там, где мои конкуренты учились, я сам преподавал.</strong></p>
+                <p>Я не нанимаю учеников, не передаю заказы «левым» бригадам. Каждый вызов — мой личный выезд. Лично проконтролирую качество, дам советы по эксплуатации, чтобы проблема не возвращалась.</p>
                 <div class="about-quote">
                     ✓ Ваш сантехник, который отвечает за результат лично
                 </div>
@@ -600,7 +647,7 @@
                 <div class="stat-label">начало карьеры</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">1200+</div>
+                <div class="stat-number">1 200+</div>
                 <div class="stat-label">довольных клиентов</div>
             </div>
             <div class="stat-item">
@@ -618,7 +665,7 @@
             <div class="feature-card">
                 <div class="feature-icon">🏆</div>
                 <h3>Опыт с 2006 года</h3>
-                <p>Лично в теме 18 лет. Обучил с десяток мастеров по городу. Когда мои конкуренты только учились, я уже был на шаг впереди.</p>
+                <p>Лично в теме 18 лет. Обучил десятки мастеров по городу. Там, где конкуренты учились — я преподавал.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🧠</div>
@@ -703,11 +750,11 @@
             </div>
             <div class="info-box">
                 <h3 style="color:#ffffff;">Вячеслав</h3>
-                <p style="font-size: 1.6rem; margin: 20px 0;"><a href="tel:+79298399188">+7 (929) 83-99-1-88</a></p>
+                <p style="font-size: 1.6rem; margin: 20px 0;"><a href="tel:+79881234567">+7 (988) 123-45-67</a></p>
                 <p>💬 WhatsApp / Telegram: тот же номер</p>
                 <p>📍 Геленджик, Кабардинка, Дивноморское, Архипо-Осиповка</p>
                 <p>🕐 Круглосуточно, без выходных</p>
-                <hr style="margin: 20px 0; border-color: #3a3a3a;">
+                <hr style="margin: 20px 0; border-color: #333;">
                 <p>✅ Лицензия • Договор • Чек</p>
             </div>
         </div>
