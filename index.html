@@ -16,31 +16,22 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
             color: #ffffff;
             line-height: 1.4;
-            background: #2c2c2c;
         }
 
-        /* Видеофон */
+        /* ВИДЕОФОН — теперь яркий и видимый */
         .video-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;  /* Чтобы видео покрывало весь фон */
+            object-fit: cover;
             z-index: -2;
-            opacity: 0.25;      /* Сделаем видео полупрозрачным, чтобы текст читался */
+            /* Убираем opacity: 0.25 — видео будет на полную яркость */
         }
 
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #1a1a1a;
-            z-index: -1;
-            opacity: 0.6;
-        }
+        /* Убираем общий overlay, который затемнял всё видео */
+        /* .overlay удалён */
 
         .container {
             max-width: 1280px;
@@ -122,12 +113,12 @@
             font-weight: bold;
         }
 
-        /* Шапка */
+        /* Шапка — делаем плотнее, чтобы читалась поверх видео */
         .navbar {
             padding: 20px 0;
             border-bottom: 1px solid #ff5500;
-            background: rgba(30, 30, 30, 0.85);
-            backdrop-filter: blur(5px);
+            background: rgba(15, 15, 15, 0.85);
+            backdrop-filter: blur(8px);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -165,10 +156,11 @@
             color: #ff5500;
         }
 
-        /* Hero */
+        /* Hero — затемняем только фон блока, чтобы текст читался */
         .hero {
             padding: 60px 0 80px;
-            background: rgba(30, 30, 30, 0.6);
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(3px);
         }
 
         .hero-grid {
@@ -198,7 +190,7 @@
 
         .hero-content p {
             font-size: 1.1rem;
-            color: #f0f0f0;
+            color: #f5f5f5;
             margin-bottom: 30px;
             max-width: 500px;
         }
@@ -219,14 +211,14 @@
 
         .stat-label {
             font-size: 0.85rem;
-            color: #e0e0e0;
+            color: #eeeeee;
         }
 
-        /* Сетка услуг */
+        /* Все остальные блоки — с затемнённым фоном и лёгким размытием, но видео за ними видно */
         .services {
             padding: 60px 0;
-            background: rgba(30, 30, 30, 0.7);
-            backdrop-filter: blur(2px);
+            background: rgba(20, 20, 20, 0.75);
+            backdrop-filter: blur(4px);
         }
 
         .services-grid {
@@ -237,17 +229,18 @@
         }
 
         .service-category {
-            background: rgba(40, 40, 40, 0.8);
-            border: 1px solid #4a4a4a;
+            background: rgba(30, 30, 30, 0.75);
+            border: 1px solid #ff5500;
             border-radius: 20px;
             padding: 25px;
             transition: all 0.2s;
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(2px);
         }
 
         .service-category:hover {
-            border-color: #ff5500;
+            background: rgba(30, 30, 30, 0.9);
             transform: translateY(-3px);
+            border-color: #c0ff2e;
         }
 
         .service-category h3 {
@@ -264,8 +257,8 @@
 
         .service-list li {
             padding: 8px 0;
-            color: #e0e0e0;
-            border-bottom: 1px dashed #4a4a4a;
+            color: #f0f0f0;
+            border-bottom: 1px dashed #555;
             font-size: 0.95rem;
         }
 
@@ -277,19 +270,18 @@
             text-align: center;
             margin-top: 30px;
             padding: 15px;
-            background: rgba(40, 40, 40, 0.8);
+            background: rgba(30, 30, 30, 0.8);
             border-radius: 40px;
-            color: #ff5500;
+            color: #c0ff2e;
             font-weight: 600;
-            border: 1px solid #4a4a4a;
+            border: 1px solid #ff5500;
             backdrop-filter: blur(4px);
         }
 
-        /* Преимущества */
         .advantages {
             padding: 60px 0;
-            background: rgba(30, 30, 30, 0.6);
-            backdrop-filter: blur(2px);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
         }
 
         .adv-grid {
@@ -303,10 +295,11 @@
         .adv-item {
             flex: 1;
             min-width: 150px;
-            background: rgba(30, 30, 30, 0.5);
+            background: rgba(20, 20, 20, 0.6);
             padding: 20px;
             border-radius: 20px;
             backdrop-filter: blur(4px);
+            border: 1px solid #444;
         }
 
         .adv-icon {
@@ -319,10 +312,9 @@
             margin-bottom: 5px;
         }
 
-        /* Галерея */
         .gallery {
             padding: 60px 0;
-            background: rgba(20, 20, 20, 0.7);
+            background: rgba(0, 0, 0, 0.6);
         }
 
         .gallery-grid {
@@ -338,21 +330,20 @@
             background-size: cover;
             background-position: center;
             border-radius: 16px;
-            border: 1px solid #4a4a4a;
+            border: 2px solid #ff5500;
             transition: 0.2s;
         }
 
         .gallery-item:hover {
-            border-color: #ff5500;
+            border-color: #c0ff2e;
             transform: scale(1.02);
         }
 
-        /* Форма */
         .callback {
-            background: rgba(30, 30, 30, 0.8);
+            background: rgba(15, 15, 15, 0.85);
             padding: 60px 0;
-            border-top: 1px solid #ff5500;
-            backdrop-filter: blur(5px);
+            border-top: 2px solid #ff5500;
+            backdrop-filter: blur(8px);
         }
 
         .callback-grid {
@@ -370,23 +361,23 @@
             width: 100%;
             padding: 14px 20px;
             margin-bottom: 15px;
-            border: 1px solid #4a4a4a;
-            background: rgba(40, 40, 40, 0.8);
+            border: 1px solid #ff5500;
+            background: rgba(30, 30, 30, 0.8);
             color: white;
             border-radius: 40px;
         }
 
         .form-box input:focus {
             outline: none;
-            border-color: #ff5500;
+            border-color: #c0ff2e;
         }
 
         .info-box {
             flex: 1;
-            background: rgba(40, 40, 40, 0.8);
+            background: rgba(30, 30, 30, 0.8);
             padding: 30px;
             border-radius: 24px;
-            border: 1px solid #4a4a4a;
+            border: 1px solid #ff5500;
             backdrop-filter: blur(4px);
         }
 
@@ -398,9 +389,9 @@
         .footer {
             padding: 30px 0;
             text-align: center;
-            color: #aaaaaa;
+            color: #cccccc;
             font-size: 0.8rem;
-            background: rgba(20, 20, 20, 0.8);
+            background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(5px);
         }
 
@@ -437,12 +428,11 @@
 </head>
 <body>
 
-<!-- ВИДЕОФОН -->
+<!-- ВИДЕОФОН — теперь на полную яркость -->
 <video class="video-bg" autoplay muted loop playsinline>
     <source src="images/bg-video.mp4" type="video/mp4">
     Ваш браузер не поддерживает видеофон.
 </video>
-<div class="overlay"></div>
 
 <!-- ПЛАВАЮЩАЯ КНОПКА - САЛАТОВЫЙ НЕОН -->
 <div class="sticky-phone">
