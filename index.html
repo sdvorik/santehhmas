@@ -18,7 +18,7 @@
             line-height: 1.4;
         }
 
-        /* ВИДЕОФОН — теперь яркий и видимый */
+        /* ВИДЕОФОН — яркий и видимый */
         .video-bg {
             position: fixed;
             top: 0;
@@ -27,11 +27,7 @@
             height: 100%;
             object-fit: cover;
             z-index: -2;
-            /* Убираем opacity: 0.25 — видео будет на полную яркость */
         }
-
-        /* Убираем общий overlay, который затемнял всё видео */
-        /* .overlay удалён */
 
         .container {
             max-width: 1280px;
@@ -428,7 +424,7 @@
 </head>
 <body>
 
-<!-- ВИДЕОФОН — теперь на полную яркость -->
+<!-- ВИДЕОФОН -->
 <video class="video-bg" autoplay muted loop playsinline>
     <source src="images/bg-video.mp4" type="video/mp4">
     Ваш браузер не поддерживает видеофон.
@@ -589,11 +585,13 @@
             <div class="form-box">
                 <h2 style="font-size: 1.8rem; margin-bottom: 15px;">Нужна помощь?</h2>
                 <p style="margin-bottom: 20px;">Оставьте номер — перезвоним за 2 минуты и проконсультируем бесплатно</p>
-                <form action="#" method="post">
-                    <input type="text" placeholder="Ваше имя" required>
-                    <input type="tel" placeholder="+7 (___) ___-__-__" required>
-                    <button type="submit" class="btn btn-accent" style="width:100%;">Перезвоните мне</button>
+                <!-- !!! В этой форме мы добавили ID "telegramForm", а кнопке — ID "submitBtn" !!! -->
+                <form id="telegramForm" method="post">
+                    <input type="text" name="name" placeholder="Ваше имя" required>
+                    <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+                    <button type="submit" id="submitBtn" class="btn btn-accent" style="width:100%;">📞 Перезвоните мне</button>
                 </form>
+                <div id="formMessage" style="margin-top: 15px; text-align: center;"></div>
             </div>
             <div class="info-box">
                 <h3>Аварийная Служба сантехников</h3>
@@ -612,11 +610,100 @@
     </div>
 </footer>
 
+<!-- КОД ДЛЯ ОТПРАВКИ В TELEGRAM -->
 <script>
-    document.querySelector('form')?.addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('Спасибо! Мы перезвоним вам в ближайшее время.');
-        this.reset();
+    // ****************** ВАЖНО: ЗАМЕНИТЕ ЭТИ ДАННЫЕ ******************
+    // Замените 'YOUR_BOT_TOKEN' на токен, который вы получили от @BotFather
+    const BOT_TOKEN = 'YOUR_BOT_TOKEN'; 
+    // Замените 'YOUR_CHAT_ID' на ваш ID, который вы получили от @userinfobot
+    const CHAT_ID = 'YOUR_CHAT_ID';
+    // ****************** КОНЕЦ ОБЛАСТИ ДЛЯ ЗАМЕНЫ ******************
+
+    // Ждем полной загрузки страницы
+    document.addEventListener('DOMContentLoaded', function() {
+        // Находим нашу форму
+        const form = document.getElementById('telegramForm');
+        const messageDiv = document.getElementById('formMessage');
+        
+        // Если форма не найдена, прекращаем выполнение
+        if (!form) return;
+
+        // Обрабатываем событие отправки формы
+        form.addEventListener('submit', async function(event) {
+            // Предотвращаем стандартную перезагрузку страницы
+            event.preventDefault();
+            
+            // Получаем данные из полей формы
+            const name = form.name.value.trim();
+            const phone = form.phone.value.trim();
+            
+            // Простая проверка, что поля заполнены (на всякий случай)
+            if (!name) {
+                messageDiv.style.color = '#ff5500';
+                messageDiv.innerHTML = '⚠️ Пожалуйста, укажите ваше имя.';
+                return;
+            }
+            if (!phone) {
+                messageDiv.style.color = '#ff5500';
+                messageDiv.innerHTML = '⚠️ Пожалуйста, укажите ваш номер телефона.';
+                return;
+            }
+
+            // Меняем текст и состояние кнопки, чтобы пользователь не отправил форму дважды
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerText;
+            submitButton.disabled = true;
+            submitButton.innerText = '⏳ Отправка...';
+            
+            // Очищаем предыдущее сообщение
+            messageDiv.innerHTML = '';
+            
+            // Формируем текст сообщения для отправки
+            const messageText = `🛠️ *НОВАЯ ЗАЯВКА С САЙТА!* 🛠️\n\n👤 *Имя:* ${name}\n📞 *Телефон:* ${phone}\n📍 *Источник:* Сайт Аварийной Службы (Геленджик)`;
+            
+            // Настраиваем параметры запроса как требует Telegram Bot API [citation:7]
+            const botUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+            const requestBody = {
+                chat_id: CHAT_ID,
+                text: messageText,
+                parse_mode: 'Markdown' // Делает текст жирным и красивым
+            };
+            
+            try {
+                // Отправляем запрос к API Telegram
+                const response = await fetch(botUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+                
+                const result = await response.json();
+                
+                // Проверяем, успешно ли отправлено сообщение
+                if (result.ok) {
+                    // Успех!
+                    messageDiv.style.color = '#c0ff2e';
+                    messageDiv.innerHTML = '✅ Заявка успешно отправлена! Мы перезвоним вам в ближайшее время.';
+                    form.reset(); // Очищаем форму
+                } else {
+                    // Ошибка от Telegram API
+                    console.error('Telegram API Error:', result);
+                    messageDiv.style.color = '#ff5500';
+                    messageDiv.innerHTML = '❌ Ошибка при отправке. Пожалуйста, попробуйте позже или позвоните по телефону.';
+                }
+            } catch (error) {
+                // Ошибка соединения или другая проблема
+                console.error('Network Error:', error);
+                messageDiv.style.color = '#ff5500';
+                messageDiv.innerHTML = '❌ Ошибка соединения. Пожалуйста, проверьте интернет и попробуйте снова.';
+            } finally {
+                // Возвращаем кнопку в исходное состояние
+                submitButton.disabled = false;
+                submitButton.innerText = originalButtonText;
+            }
+        });
     });
 </script>
 </body>
